@@ -1,13 +1,15 @@
 import { CiSearch as SearchIcon } from "react-icons/ci";
 import { FaArrowRightLong as ArrowIcon } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import Parallex from "../../components/Home/Parallex";
+import HeroCorner from "../../components/Home/HeroCorner";
 
 const Home = () => {
 
   return (
     <div className=' text-black'>
-        <div>
-            
+      
+        <div >  
             <div className="mx-auto text-center text-[50px] font-extrabold my-[3%]">
               <h1>Get More Info By</h1>
               <h1>Connect with Info</h1>
