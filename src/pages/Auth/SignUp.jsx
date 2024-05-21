@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { createContext, useContext, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoPersonSharp as StaffIcon } from "react-icons/io5";
 import { PiStudentFill as StudentIcon } from "react-icons/pi";
 import { IoIosEye as ShowPass } from "react-icons/io";
@@ -10,6 +10,17 @@ import { auth,db } from "../../firebase-config.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore"; 
 import AuthContext from "../../Context/Auth&DB/Auth&DB.jsx";
+import UserContext, { useUserData } from "../../Context/UserData/UserData.jsx";
+
+// const UserIDContext = createContext();
+
+// export const UserIDContextProvider = ({children}) =>{
+//   return(
+//     <UserIDContext.Provider>
+//       {children}
+//     </UserIDContext.Provider>
+//   );
+// };
 
 const SignUp = () => {
   const location = useLocation();
@@ -17,9 +28,10 @@ const SignUp = () => {
   const [SignUpType, setSignUpType] = useState("Login");
   const [userType, setUserType] = useState("student");
   const [showPass, setShowPass] = useState(false);
+  const [userExist,setUserExist]=useState(false);
 
   // User Data Managing State
-  const [email, setEmail] = useState(null);
+  const [useremail, setUserEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [username, setUserName] = useState(null);
   const [dept, setDept] = useState(null);
@@ -27,12 +39,13 @@ const SignUp = () => {
 
   //Context API to checking user is authendicated
   const {isauthendicated,setAuthendicated} =useContext(AuthContext);
+  const {user,setUserData} = useUserData();
 
   useEffect(() => {
     location.pathname === "/login" && setSignUpType("Login");
     location.pathname === "/register" && setSignUpType("Register");
 
-    setEmail("");
+    setUserEmail("");
     setPassword("");
     setDept("");
     setUserName("");
@@ -47,34 +60,49 @@ const SignUp = () => {
     setShowPass(pass);
   };
 
+  //Handle user Registeration
   const handleSignUp = async (event) => {
     event.preventDefault();
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+      const userCredential = await createUserWithEmailAndPassword(auth, useremail, password);
+      const userCred = userCredential.user;
+      const UserID = userCred.uid;
 
-      user && setAuthendicated(true);
-
-      await setDoc(doc(db,"users",user.uid),{
+      await setDoc(doc(db,"users",UserID),{
         userType,
         dept,
         username,
-        email,
+        useremail,
         studRoll : userType === "student" ? studRoll : null,
         createdAt: new Date()
       });
+      navigate("/feedback");
 
-      console.log("isauth in signup :"+isauthendicated);
-      isauthendicated && navigate("/feedback");
+      setUserData({id:UserID,name:username,email:useremail,department:dept,type:userType});
+      console.log("UserData Context : "+user);
+
 
     } catch (error) {
-      console.log("Error occured : " + error);
+      error.message === "Firebase: Error (auth/email-already-in-use)." && setUserExist(true);
+      setTimeout(()=>{setUserExist(false)},3000);
+      console.log("Error occured : " + error.message);
     }
   };
 
   return (
     <form onSubmit={handleSignUp}>
+
+      {
+        userExist === true &&  (
+          <div className="fixed flex flex-row items-center gap-[5%] justify-center top-[18%] left-[40%] text-white w-[300px] mx-auto bg-red-500 px-[15px] py-[8px] rounded-[10px] text-center">
+            <StaffIcon/>
+            <p>User Already Exist</p>
+           </div>
+        )
+      }
+
+
       <div className=" w-[600px] mx-auto bg-gray-100 text-center py-[2%] mt-[3%] rounded-[10px] px-[2%]">
         <h1 className=" text-[20px] font-semibold my-[4%] uppercase">
           {SignUpType}
@@ -131,15 +159,6 @@ const SignUp = () => {
                 />
               )}
 
-              {/* <input
-                type={"text"}
-                placeholder={"Department"}
-                className={`w-[400px] px-2 py-3 rounded-[10px] outline-none my-[2%] `}
-                value={dept}
-                onChange={(e) => setDept(e.target.value)}
-                required
-              /> */}
-
               <select
                 className={`w-[400px] px-2 py-3 rounded-[10px] outline-none my-[2%] `}
                 value={dept}
@@ -163,8 +182,8 @@ const SignUp = () => {
                   userType === "staff" ? "Staff email" : "Student email"
                 }
                 className={`w-[400px] px-2 py-3 rounded-[10px] outline-none my-[2%] `}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={useremail}
+                onChange={(e) => setUserEmail(e.target.value)}
                 required
               />
 
@@ -205,7 +224,12 @@ const SignUp = () => {
           >
             SignUp
           </button>
-          <p className="text-[14px]">SignUp by using valid information.</p>
+
+          <div className=" flex flex-row items-center justify-center gap-[5%]">
+          <p className="text-[14px]">Already have an Account ?</p>
+        <Link to={"/login"} className=" hover:underline duration-200">Login</Link>
+        </div>
+          
         </div>
       </div>
     </form>
@@ -215,5 +239,5 @@ const SignUp = () => {
 export default SignUp;
 
 
-// how to signup by using extra details like name,rollno,department,email,password for student and name, department,email,password for staff. Each user can have the different role in our application. if user is staff means they nevigate to staff dashboard and if student navigate means they navigate to student dashboard. both are different rights and access. And other thing is if anyone want to navigate to the dashboard by using url means the must need to navigate the user to the login page.
+// how to signup by using extra details like name,rollno,department,useremail,password for student and name, department,useremail,password for staff. Each user can have the different role in our application. if user is staff means they nevigate to staff dashboard and if student navigate means they navigate to student dashboard. both are different rights and access. And other thing is if anyone want to navigate to the dashboard by using url means the must need to navigate the user to the login page.
 

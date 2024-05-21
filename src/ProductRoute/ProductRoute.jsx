@@ -6,7 +6,7 @@ import { Navigate, Outlet } from "react-router-dom";
 const ProductRoute = ({children}) => {
   const {isauthendicated} = useContext(AuthContext);
 
-  return isauthendicated ? <Outlet/> : Navigate({to:"/login"});
+  return !isauthendicated ? <Outlet/> : Navigate({to:"/login"});
 }
 
 export default ProductRoute

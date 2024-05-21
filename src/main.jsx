@@ -8,7 +8,7 @@ import { Home, Auth, SignUp } from "./pages/index.js";
 
 import { FeedBack } from "./components/index.js";
 
-import { AuthContextProvider } from "./Context/Auth&DB/Auth&DB.jsx";
+import { AuthContextProvider,UserContextProvider } from "./Context/index.js";
 
 import ProductRoute from "./ProductRoute/ProductRoute.jsx";
 
@@ -32,9 +32,9 @@ const router = createBrowserRouter([
       {
         path: "/feedback",
         element: (
-          <ProductRoute>
-            <FeedBack />
-          </ProductRoute>
+          <FeedBack />
+          // <ProductRoute>
+          // </ProductRoute>
         ),
       },
     ],
@@ -42,11 +42,15 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-      <AuthContextProvider>
-  <RouterProvider router={router}>
-    <React.StrictMode>
+  <AuthContextProvider>
+    <UserContextProvider> 
+
+    <RouterProvider router={router}>
+      <React.StrictMode>
         <App />
-    </React.StrictMode>
-  </RouterProvider>
-      </AuthContextProvider>
+      </React.StrictMode>
+    </RouterProvider>
+
+    </UserContextProvider>
+  </AuthContextProvider>
 );

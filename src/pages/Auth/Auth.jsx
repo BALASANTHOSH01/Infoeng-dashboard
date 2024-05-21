@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoPersonSharp as StaffIcon } from "react-icons/io5";
 import { PiStudentFill as StudentIcon } from "react-icons/pi";
 import { IoIosEye as ShowPass} from "react-icons/io";
 import { IoIosEyeOff as HiddenPass} from "react-icons/io";
+import { RxCross2 as CrossIcon } from "react-icons/rx";
 
 //Firebase Configuration
 import { auth } from '../../firebase-config.js';
@@ -16,6 +17,7 @@ const Auth = () => {
   const [userType,setUserType]=useState("student");
   const [showPass,setShowPass]=useState(false);
   const [loginStatus,setLoginStatus]=useState(false);
+  const [isInvalid,setIsInvalid] = useState(false);
 
   // User Data Managing State
   const [email,setEmail]=useState(null);
@@ -44,13 +46,18 @@ const Auth = () => {
     try {
       
       await signInWithEmailAndPassword(auth,email,password);
-      setLoginStatus(true);
-      loginStatus === true && navigate("/feedback");
+      navigate("/feedback");
       console.log("Login Successfully");
       
     } catch (error) {
       
       console.log("Error occured : "+error);
+      setIsInvalid(true);
+
+      setTimeout(()=>{
+        setIsInvalid(false);
+      },3000);
+
       setLoginStatus(false);
       
     }
@@ -59,6 +66,19 @@ const Auth = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+
+      {
+        isInvalid && (
+          <div className="flex flex-row justify-center gap-[6%] items-center absolute w-[300px] top-[18%] left-[40%] text-center px-[14px] py-[7px] rounded-[10px] bg-red-500 text-white text-[17px]">
+            <CrossIcon className=" text-[18px] font-bold"/>
+            <p>Invalid user details</p>
+          </div>
+        )
+      }
+
+      
+
+
       <div className=" w-[600px] mx-auto bg-gray-100 text-center py-[2%] mt-[3%] rounded-[10px] px-[2%]">
         <h1 className=" text-[20px] font-semibold my-[4%] uppercase">{authType}</h1>
 
@@ -99,7 +119,12 @@ const Auth = () => {
           }
 
         <button className="w-[400px] hover:shadow-lg hover:bg-white hover:text-black hover:border hover:border-black duration-200 cursor-pointer px-2 py-3 my-[2%] rounded-[10px] text-center mx-auto bg-black text-white" type="submit">Login</button>
-        <p className="text-[14px]">Login by using valid information.</p>
+
+        <div className=" flex flex-row items-center justify-center gap-[5%]">
+          <p className="text-[14px]">Don&apos;t have an Account ?</p>
+        <Link to={"/register"} className=" hover:underline duration-200">Register</Link>
+        </div>
+
         </div>
 
 
