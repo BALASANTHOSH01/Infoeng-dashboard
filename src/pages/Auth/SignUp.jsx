@@ -101,14 +101,14 @@ const SignUp = () => {
       }
 
 
-      <div className=" w-[600px] md:w-[90%] mx-auto bg-gray-100 md:bg-white text-center py-[2%] mt-[3%] rounded-[10px] px-[2%]">
+      <div className=" w-[600px] md:w-[100%] mx-auto bg-gray-100 md:bg-white text-center py-[2%] mt-[3%] rounded-[10px] px-[2%]">
         <h1 className=" text-[20px] font-semibold my-[4%] uppercase">
           {SignUpType}
         </h1>
 
-        <div className=" flex flex-row items-center gap-[4%] justify-center my-[3%]">
+        <div className=" flex flex-row md:w-[85%] md:mx-auto items-center gap-[4%] justify-center my-[3%]">
           <div
-            className={`flex flex-row items-center w-[190px] md:w-[160px] text-center justify-center cursor-pointer gap-[5%] px-[15px] py-[10px] rounded-[10px] ${
+            className={`flex flex-row items-center w-[190px] md:w-[50%] text-center justify-center cursor-pointer gap-[5%] px-[15px] py-[10px] rounded-[10px] ${
               userType === "staff"
                 ? "bg-black text-white"
                 : "bg-gray-50 border border-black"
@@ -120,7 +120,7 @@ const SignUp = () => {
           </div>
 
           <div
-            className={`flex flex-row items-center w-[190px] md:w-[160px] text-center justify-center cursor-pointer gap-[5%] px-[15px] py-[10px] rounded-[10px] ${
+            className={`flex flex-row items-center w-[190px] md:w-[50%] text-center justify-center cursor-pointer gap-[5%] px-[15px] py-[10px] rounded-[10px] ${
               userType === "student"
                 ? "bg-black text-white"
                 : "bg-gray-50 border border-black"
@@ -140,7 +140,7 @@ const SignUp = () => {
                 placeholder={
                   userType === "staff" ? "Staff Name" : "Student Name"
                 }
-                className={`w-[400px] md:w-[80%] px-2 py-3 rounded-[10px] outline-none my-[2%] md:border md:border-gray-400 md:my-[3%]`}
+                className={`w-[400px] md:w-[85%] px-2 py-3 rounded-[10px] outline-none my-[2%] md:border md:border-gray-400 md:my-[3%]`}
                 value={username}
                 onChange={(e) => setUserName(e.target.value)}
                 required
@@ -150,7 +150,7 @@ const SignUp = () => {
                 <input
                   type={"text"}
                   placeholder={"Student RollNO."}
-                  className={`w-[400px] md:w-[80%] px-2 py-3 rounded-[10px] outline-none my-[2%] md:border md:border-gray-400 md:my-[3%]`}
+                  className={`w-[400px] md:w-[85%] px-2 py-3 rounded-[10px] outline-none my-[2%] md:border md:border-gray-400 md:my-[3%]`}
                   value={studRoll}
                   onChange={(e) => setStudRoll(e.target.value)}
                   required
@@ -158,7 +158,7 @@ const SignUp = () => {
               )}
 
               <select
-                className={`w-[400px] md:w-[80%] px-2 py-3 rounded-[10px] outline-none my-[2%] md:border md:border-gray-400 md:my-[3%]`}
+                className={`w-[400px] md:w-[85%] px-2 py-3 rounded-[10px] outline-none my-[2%] md:border md:border-gray-400 md:my-[3%]`}
                 value={dept}
                 onChange={(e) => setDept(e.target.value)}
                 required
@@ -179,7 +179,7 @@ const SignUp = () => {
                 placeholder={
                   userType === "staff" ? "Staff email" : "Student email"
                 }
-                className={`w-[400px] md:w-[80%] px-2 py-3 rounded-[10px] outline-none my-[2%] md:border md:border-gray-400 md:my-[3%]`}
+                className={`w-[400px] md:w-[85%] px-2 py-3 rounded-[10px] outline-none my-[2%] md:border md:border-gray-400 md:my-[3%]`}
                 value={useremail}
                 onChange={(e) => setUserEmail(e.target.value)}
                 required
@@ -189,7 +189,7 @@ const SignUp = () => {
                 <input
                   type={showPass === true ? "text" : "password"}
                   placeholder={"Password"}
-                  className={`w-[400px] md:w-[80%] px-2 py-3 rounded-[10px] outline-none my-[2%] md:border md:border-gray-400 md:my-[3%]`}
+                  className={`w-[400px] md:w-[85%] px-2 py-3 rounded-[10px] outline-none my-[2%] md:border md:border-gray-400 md:my-[3%]`}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   onPaste={(e) => e.preventDefault()}
