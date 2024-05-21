@@ -39,10 +39,10 @@ const NavBar = () => {
 
   return (
     <div>
-        <div className='z-40 w-full h-[15vh] px-[3%] shadow-lg py-[10px] text-[16px] font-medium flex flex-row items-center justify-between'>
+        <div className='z-40 w-full h-[15vh] md:h-[12vh] px-[3%] shadow-lg py-[10px] text-[16px] font-medium flex flex-row items-center justify-between'>
 
-            <Link to={"/"} className='flex-[1.2] cursor-pointer'>
-                <img src={InfoLogo} alt='' className='w-[60px] h-[60px]'/>
+            <Link to={"/"} className='flex-[1.2] cursor-pointer p-2'>
+                <img src={InfoLogo} alt='' className='w-[60px] h-[60px] md:w-[45px] md:h-[45px]'/>
                 
             </Link>
 
