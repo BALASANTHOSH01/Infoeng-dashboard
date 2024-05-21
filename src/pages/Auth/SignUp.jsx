@@ -103,14 +103,14 @@ const SignUp = () => {
       }
 
 
-      <div className=" w-[600px] mx-auto bg-gray-100 text-center py-[2%] mt-[3%] rounded-[10px] px-[2%]">
+      <div className=" w-[600px] md:w-[90%] mx-auto bg-gray-100 text-center py-[2%] mt-[3%] rounded-[10px] px-[2%]">
         <h1 className=" text-[20px] font-semibold my-[4%] uppercase">
           {SignUpType}
         </h1>
 
         <div className=" flex flex-row items-center gap-[4%] justify-center my-[3%]">
           <div
-            className={`flex flex-row items-center w-[190px] text-center justify-center cursor-pointer gap-[5%] px-[15px] py-[10px] rounded-[10px] ${
+            className={`flex flex-row items-center w-[190px] md:w-[160px] text-center justify-center cursor-pointer gap-[5%] px-[15px] py-[10px] rounded-[10px] ${
               userType === "staff"
                 ? "bg-black text-white"
                 : "bg-gray-50 border border-black"
@@ -122,7 +122,7 @@ const SignUp = () => {
           </div>
 
           <div
-            className={`flex flex-row items-center w-[190px] text-center justify-center cursor-pointer gap-[5%] px-[15px] py-[10px] rounded-[10px] ${
+            className={`flex flex-row items-center w-[190px] md:w-[160px] text-center justify-center cursor-pointer gap-[5%] px-[15px] py-[10px] rounded-[10px] ${
               userType === "student"
                 ? "bg-black text-white"
                 : "bg-gray-50 border border-black"
@@ -142,7 +142,7 @@ const SignUp = () => {
                 placeholder={
                   userType === "staff" ? "Staff Name" : "Student Name"
                 }
-                className={`w-[400px] px-2 py-3 rounded-[10px] outline-none my-[2%] `}
+                className={`w-[400px] md:w-[80%] px-2 py-3 rounded-[10px] outline-none my-[2%] `}
                 value={username}
                 onChange={(e) => setUserName(e.target.value)}
                 required
@@ -152,7 +152,7 @@ const SignUp = () => {
                 <input
                   type={"text"}
                   placeholder={"Student RollNO."}
-                  className={`w-[400px] px-2 py-3 rounded-[10px] outline-none my-[2%] `}
+                  className={`w-[400px] md:w-[80%] px-2 py-3 rounded-[10px] outline-none my-[2%] `}
                   value={studRoll}
                   onChange={(e) => setStudRoll(e.target.value)}
                   required
@@ -160,7 +160,7 @@ const SignUp = () => {
               )}
 
               <select
-                className={`w-[400px] px-2 py-3 rounded-[10px] outline-none my-[2%] `}
+                className={`w-[400px] md:w-[80%] px-2 py-3 rounded-[10px] outline-none my-[2%] `}
                 value={dept}
                 onChange={(e) => setDept(e.target.value)}
                 required
@@ -181,7 +181,7 @@ const SignUp = () => {
                 placeholder={
                   userType === "staff" ? "Staff email" : "Student email"
                 }
-                className={`w-[400px] px-2 py-3 rounded-[10px] outline-none my-[2%] `}
+                className={`w-[400px] md:w-[80%] px-2 py-3 rounded-[10px] outline-none my-[2%] `}
                 value={useremail}
                 onChange={(e) => setUserEmail(e.target.value)}
                 required
@@ -191,7 +191,7 @@ const SignUp = () => {
                 <input
                   type={showPass === true ? "text" : "password"}
                   placeholder={"Password"}
-                  className={`w-[400px] px-2 py-3 rounded-[10px] outline-none my-[2%] `}
+                  className={`w-[400px] md:w-[80%] px-2 py-3 rounded-[10px] outline-none my-[2%] `}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   onPaste={(e) => e.preventDefault()}
@@ -213,13 +213,13 @@ const SignUp = () => {
             </div>
           }
 
-          <div className=" flex flex-row gap-[3%] items-center text-[14px] w-[400px] mx-auto">
+          <div className=" flex flex-row gap-[3%] items-center text-[14px] md:w-[80%] w-[400px] mx-auto">
             <input type="checkbox" className="w-[15px] h-[15px]" required/>
             <p>Make sure your details are correct!</p>
           </div>
 
           <button
-            className="w-[400px] hover:shadow-lg hover:bg-white hover:text-black hover:border hover:border-black duration-200 cursor-pointer px-2 py-3 my-[2%] rounded-[10px] text-center mx-auto bg-black text-white"
+            className="w-[400px] md:w-[80%] hover:shadow-lg hover:bg-white hover:text-black hover:border hover:border-black duration-200 cursor-pointer px-2 py-3 my-[2%] md:my-[5%] rounded-[10px] text-center mx-auto bg-black text-white"
             type="submit"
           >
             SignUp
