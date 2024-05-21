@@ -5,6 +5,7 @@ import { db } from "../../firebase-config";
 import { MdOutlineDone as TickIcon } from "react-icons/md";
 import { IoArrowForward as BackArrowIcon } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
+import AlertPopup from "../AlertPop/AlertPopup";
 
 const FeedBack = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const FeedBack = () => {
     q2: null,
     q3: null,
   });
+  const [selectedAll,setSelectedAll]=useState(true);
   const [isSubmitted,setIsSubmitted]=useState(false);
 
   const handleAnswer = (question, answer) => {
@@ -39,21 +41,36 @@ const FeedBack = () => {
       submittedAt: new Date(),
     };
 
-    try {
-      await addDoc(collection(db, "feedback"), feedbackData); //add data to DB
-      setSelectedOption({q1:null,q2:null,q3:null}); //Null after submitting
-      setIsSubmitted(true);
-    } catch (error) {
-      setIsSubmitted(false);
-      console.log("Error occured : " + error);
+    
+    const hasSelectedAll = Object.values(selectedOption).some((answer) => answer !== null);
+    if(hasSelectedAll){
+
+      try {
+        await addDoc(collection(db, "feedback"), feedbackData); //add data to DB
+        setSelectedOption({q1:null,q2:null,q3:null}); //Null after submitting
+        setIsSubmitted(true);
+      } catch (error) {
+        setIsSubmitted(false);
+        console.log("Error occured : " + error);
+      }
+      
+    } else{
+      
+      setSelectedAll(false);
+      setTimeout(()=>setSelectedAll(true),3000);
     }
 
+
   };
+
+
+
+
 
   // Reusable question component
   const CheckboxInput = ({ question, no, head, b1, b2, b3, b4 }) => {
     return (
-      <div className="text-start my-[10%]">
+      <div className="text-start my-[10%] md:my-[5%]">
         
         <div className="flex flex-row items-center font-semibold text-[18px]">
           <p>{no}</p>.&#160;{head}
@@ -121,8 +138,16 @@ const FeedBack = () => {
       {
         isSubmitted === false ?
         (
-          <div className="text-black w-[400px] mx-auto text-center overflow-x-hidden">
-        <h1 className="text-[18px] font-semibold my-[10%]">Enter your feedback</h1>
+          <div className="text-black w-[400px] md:w-[90%] flex flex-col justify-center mx-auto text-center overflow-x-hidden mb-[10%]">
+
+            
+       {
+        selectedAll === false && (
+          <AlertPopup data={"Response to all questions."}/>
+        )
+       }
+
+        <h1 className="text-[20px] font-semibold my-[10%] md:my-[4%]">Enter your feedback</h1>
         <div>
           <CheckboxInput
             question="q1"
@@ -182,3 +207,8 @@ const FeedBack = () => {
 };
 
 export default FeedBack;
+
+
+// selectedOption.q1=null || "";
+// selectedOption.q2=null || "";
+// selectedOption.q3=null || "";

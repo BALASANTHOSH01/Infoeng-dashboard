@@ -9,6 +9,7 @@ import { RxCross2 as CrossIcon } from "react-icons/rx";
 //Firebase Configuration
 import { auth } from '../../firebase-config.js';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import AlertPopup from "../../components/AlertPop/AlertPopup.jsx";
 
 const Auth = () => {
   const location = useLocation();
@@ -69,20 +70,16 @@ const Auth = () => {
 
       {
         isInvalid && (
-          <div className="flex flex-row justify-center gap-[6%] items-center absolute w-[300px] top-[18%] left-[40%] text-center px-[14px] py-[7px] rounded-[10px] bg-red-500 text-white text-[17px]">
-            <CrossIcon className=" text-[18px] font-bold"/>
-            <p>Invalid user details</p>
-          </div>
+          <AlertPopup icon={<CrossIcon/>} data={"Invalid user details"}/>
         )
       }
 
       
+      <div className=" w-[600px] md:w-[90%] mx-auto bg-gray-100 md:bg-white text-center py-[2%] mt-[3%] md:mt-[2%] rounded-[10px] px-[2%]">
 
+        <h1 className=" text-[20px] font-semibold my-[4%] md:my-[6%] uppercase">{authType}</h1>
 
-      <div className=" w-[600px] md:w-[90%] mx-auto bg-gray-100 text-center py-[2%] mt-[3%] md:mt-[7%] rounded-[10px] px-[2%]">
-        <h1 className=" text-[20px] font-semibold my-[4%] uppercase">{authType}</h1>
-
-        <div className=" flex flex-row items-center gap-[4%] justify-center my-[3%]">
+        <div className=" flex flex-row items-center gap-[4%] justify-center md:my-[5%] my-[3%]">
           <div className={`flex flex-row items-center w-[190px] md:w-[160px] text-center justify-center cursor-pointer gap-[5%] px-[15px] py-[10px] rounded-[10px] ${userType === "staff" ? "bg-black text-white" : "bg-gray-50 border border-black"} text-[15px]`} onClick={()=>handleUserType("staff")}>
             <StaffIcon />
             <p>Staff</p>
@@ -98,11 +95,11 @@ const Auth = () => {
           {
             <div>
 
-              <input type={"email"} placeholder={userType === "staff" ? "Staff email" : "Student email"} className={`w-[400px] md:w-[80%] px-2 py-3 rounded-[10px] outline-none my-[2%] `} value={email} onChange={(e)=>setEmail(e.target.value)} required/>
+              <input type={"email"} placeholder={userType === "staff" ? "Staff email" : "Student email"} className={`w-[400px] md:w-[80%] px-2 py-3 rounded-[10px] outline-none my-[2%] md:border md:border-gray-400 md:my-[2%]`} value={email} onChange={(e)=>setEmail(e.target.value)} required/>
 
               <div className=" relative">
 
-              <input type={showPass===true ? "text" : "password"} placeholder={"Password"} className={`w-[400px] md:w-[80%] px-2 py-3 rounded-[10px] outline-none my-[2%] `} value={password} onChange={(e)=>setPassword(e.target.value)} onPaste={(e)=>e.preventDefault()} required/>
+              <input type={showPass===true ? "text" : "password"} placeholder={"Password"} className={`w-[400px] md:w-[80%] px-2 py-3 rounded-[10px] outline-none my-[2%] md:border md:border-gray-400 md:my-[2%]`} value={password} onChange={(e)=>setPassword(e.target.value)} onPaste={(e)=>e.preventDefault()} required/>
 
               {
                 showPass === true ?                
@@ -118,7 +115,7 @@ const Auth = () => {
             </div>
           }
 
-        <button className="w-[400px] md:w-[80%] hover:shadow-lg hover:bg-white hover:text-black hover:border hover:border-black duration-200 cursor-pointer px-2 py-3 my-[2%] rounded-[10px] text-center mx-auto bg-black text-white" type="submit">Login</button>
+        <button className="w-[400px] md:w-[80%] hover:shadow-lg hover:bg-white hover:text-black hover:border hover:border-black duration-200 cursor-pointer px-2 py-3 my-[2%] md:my-[4%] rounded-[10px] text-center mx-auto bg-black text-white" type="submit">Login</button>
 
         <div className=" flex flex-row items-center justify-center gap-[5%]">
           <p className="text-[14px]">Don&apos;t have an Account ?</p>

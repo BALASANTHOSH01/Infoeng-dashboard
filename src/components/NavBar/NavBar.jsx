@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {InfoLogo} from "../../assets/index.js";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { RxHamburgerMenu as MenuIcon } from "react-icons/rx";
 import {motion, useScroll} from "framer-motion";
 import { FaArrowRightLong as ArrowIcon} from "react-icons/fa6";
@@ -17,10 +17,11 @@ const MobileNav = ({setIsMobileNav})=>{
 
         <div className=' flex flex-col  text-[20px] my-[30%]'>
           <Link to={"/"} className=' px-[30px] py-[20px] hover:bg-gray-600'>Home</Link>
-          <Link to={"/"} className=' px-[30px] py-[20px] hover:bg-gray-600'>Register</Link>
-          <Link to={"/"} className=' px-[30px] py-[20px] hover:bg-gray-600'>Login</Link>
+          <Link to={"/register"} className=' px-[30px] py-[20px] hover:bg-gray-600'>Register</Link>
+          <Link to={"/login"} className=' px-[30px] py-[20px] hover:bg-gray-600'>Login</Link>
+          <Link to={"/feedback"} className=' px-[30px] py-[20px] hover:bg-gray-600'>FeedBack</Link>
         </div>
-        
+
       </div>
 
     </div>
@@ -29,7 +30,12 @@ const MobileNav = ({setIsMobileNav})=>{
 
 const NavBar = () => {
 
+  const location = useLocation();
   const[ismobileNav,setIsMobileNav]=useState(false);
+
+  useEffect(()=>{
+    setIsMobileNav(false);
+  },[location.pathname]);
 
   return (
     <div>
