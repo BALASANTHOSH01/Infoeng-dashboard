@@ -7,7 +7,7 @@ import HeroCorner from "../../components/Home/HeroCorner";
 const Home = () => {
 
   return (
-    <div className=' text-black'>
+    <div>
       
         <div >  
             <div className="mx-auto text-center text-[50px] font-extrabold my-[3%] md:my-[6%]">
@@ -20,7 +20,7 @@ const Home = () => {
               <SearchIcon className=" text-[20px] font-extrabold text-gray-600"/>
             </div>
 
-            <Link to={"/login"} className=" flex flex-row justify-around items-center mx-auto rounded-[25px] text-white bg-black w-[150px] px-[15px] py-[10px] hover:shadow-lg cursor-pointer my-[3%] md:my-[8%] hover:bg-white hover:text-black hover:border hover:border-black  duration-300">
+            <Link to={"/login"} className=" flex flex-row justify-around items-center mx-auto rounded-[25px] text-white bg-blue-500 w-[150px] px-[15px] py-[10px] hover:shadow-lg cursor-pointer my-[3%] md:my-[8%] hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500  duration-300">
               <h1>Get Start</h1>
               <ArrowIcon/>
             </Link>

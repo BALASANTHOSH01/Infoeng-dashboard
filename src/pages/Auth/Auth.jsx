@@ -80,12 +80,12 @@ const Auth = () => {
         <h1 className=" text-[20px] font-semibold my-[4%] md:my-[6%] uppercase">{authType}</h1>
 
         <div className=" flex flex-row md:w-[85%] mx-auto items-center gap-[4%] justify-center md:my-[5%] my-[3%]">
-          <div className={`flex flex-row items-center w-[190px] md:w-[50%] text-center justify-center cursor-pointer gap-[5%] px-[15px] py-[10px] rounded-[10px] ${userType === "staff" ? "bg-black text-white" : "bg-gray-50 border border-black"} text-[15px]`} onClick={()=>handleUserType("staff")}>
+          <div className={`flex flex-row items-center w-[190px] md:w-[50%] text-center justify-center cursor-pointer gap-[5%] px-[15px] py-[10px] rounded-[10px] ${userType === "staff" ? "bg-blue-500 text-white" : "bg-gray-50 border border-blue-500"} text-[15px]`} onClick={()=>handleUserType("staff")}>
             <StaffIcon />
             <p>Staff</p>
           </div>
 
-          <div className={`flex flex-row items-center w-[190px] md:w-[50%] text-center justify-center cursor-pointer gap-[5%] px-[15px] py-[10px] rounded-[10px] ${userType === "student" ? "bg-black text-white" : "bg-gray-50 border border-black"} text-[15px]`} onClick={()=>handleUserType("student")}>
+          <div className={`flex flex-row items-center w-[190px] md:w-[50%] text-center justify-center cursor-pointer gap-[5%] px-[15px] py-[10px] rounded-[10px] ${userType === "student" ? "bg-blue-500 text-white" : "bg-gray-50 border border-blue-500"} text-[15px]`} onClick={()=>handleUserType("student")}>
             <StudentIcon />
             <p>Student</p>
           </div>
@@ -115,7 +115,7 @@ const Auth = () => {
             </div>
           }
 
-        <button className="w-[400px] md:w-[85%] hover:shadow-lg hover:bg-white hover:text-black hover:border hover:border-black duration-200 cursor-pointer px-2 py-3 my-[2%] md:my-[4%] rounded-[10px] text-center mx-auto bg-black text-white" type="submit">Login</button>
+        <button className="w-[400px] md:w-[85%] hover:shadow-lg hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500 duration-200 cursor-pointer px-2 py-3 my-[2%] md:my-[4%] rounded-[10px] text-center mx-auto bg-blue-500 text-white" type="submit">Login</button>
 
         <div className=" flex flex-row items-center justify-center gap-[5%]">
           <p className="text-[14px]">Don&apos;t have an Account ?</p>

@@ -40,7 +40,7 @@ const SignUp = () => {
 
   //Context API to checking user is authendicated
   const {isauthendicated,setAuthendicated} =useContext(AuthContext);
-  const {user,setUserData} = useUserData();
+  const {userdata,setUserData} = useUserData();
 
   useEffect(() => {
     location.pathname === "/login" && setSignUpType("Login");
@@ -81,7 +81,7 @@ const SignUp = () => {
       navigate("/feedback");
 
       setUserData({id:UserID,name:username,email:useremail,department:dept,type:userType});
-      console.log("UserData Context : "+user);
+      console.log("UserData Context : "+userdata);
 
 
     } catch (error) {
@@ -110,8 +110,8 @@ const SignUp = () => {
           <div
             className={`flex flex-row items-center w-[190px] md:w-[50%] text-center justify-center cursor-pointer gap-[5%] px-[15px] py-[10px] rounded-[10px] ${
               userType === "staff"
-                ? "bg-black text-white"
-                : "bg-gray-50 border border-black"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-50 border border-blue-500"
             } text-[15px]`}
             onClick={() => handleUserType("staff")}
           >
@@ -122,8 +122,8 @@ const SignUp = () => {
           <div
             className={`flex flex-row items-center w-[190px] md:w-[50%] text-center justify-center cursor-pointer gap-[5%] px-[15px] py-[10px] rounded-[10px] ${
               userType === "student"
-                ? "bg-black text-white"
-                : "bg-gray-50 border border-black"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-50 border border-blue-500"
             } text-[15px]`}
             onClick={() => handleUserType("student")}
           >
@@ -217,7 +217,7 @@ const SignUp = () => {
           </div>
 
           <button
-            className="w-[400px] md:w-[80%] hover:shadow-lg hover:bg-white hover:text-black hover:border hover:border-black duration-200 cursor-pointer px-2 py-3 my-[2%] md:my-[4%] rounded-[10px] text-center mx-auto bg-black text-white"
+            className="w-[400px] md:w-[80%] hover:shadow-lg hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500 duration-200 cursor-pointer px-2 py-3 my-[2%] md:my-[4%] rounded-[10px] text-center mx-auto bg-blue-500 text-white"
             type="submit"
           >
             SignUp

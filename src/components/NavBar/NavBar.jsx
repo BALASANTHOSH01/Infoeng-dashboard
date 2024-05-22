@@ -9,17 +9,17 @@ const MobileNav = ({setIsMobileNav})=>{
   return(
     <div>
 
-      <div className=' fixed top-0 right-0 w-[65%] z-30 bg-black text-white py-[3%] h-screen'>
+      <div className=' fixed top-0 right-0 w-[65%] z-30 bg-blue-500 text-white py-[3%] h-screen'>
 
-       <motion.div onClick={()=>setIsMobileNav(false)} className='p-3 hover:bg-gray-800 rounded-[50%] w-[50px] h-[50px] my-[10%] cursor-pointer text-[28px] mt-[3%] flex  items-center justify-end float-right mr-[12%]'> 
+       <motion.div onClick={()=>setIsMobileNav(false)} className='p-3 hover:bg-blue-600 rounded-[50%] w-[50px] h-[50px] my-[10%] cursor-pointer text-[28px] mt-[3%] flex  items-center justify-end float-right mr-[12%]'> 
        <ArrowIcon />
        </motion.div>
 
         <div className=' flex flex-col  text-[20px] my-[30%]'>
-          <Link to={"/"} className=' px-[30px] py-[20px] hover:bg-gray-600'>Home</Link>
-          <Link to={"/register"} className=' px-[30px] py-[20px] hover:bg-gray-600'>Register</Link>
-          <Link to={"/login"} className=' px-[30px] py-[20px] hover:bg-gray-600'>Login</Link>
-          <Link to={"/feedback"} className=' px-[30px] py-[20px] hover:bg-gray-600'>FeedBack</Link>
+          <Link to={"/"} className=' px-[30px] py-[20px] hover:bg-blue-600'>Home</Link>
+          <Link to={"/register"} className=' px-[30px] py-[20px] hover:bg-blue-600'>Register</Link>
+          <Link to={"/login"} className=' px-[30px] py-[20px] hover:bg-blue-600'>Login</Link>
+          <Link to={"/feedback"} className=' px-[30px] py-[20px] hover:bg-blue-600'>FeedBack</Link>
         </div>
 
       </div>
@@ -47,9 +47,9 @@ const NavBar = () => {
             </Link>
 
             <div className='md:hidden flex-[0.6] flex flex-row justify-between items-center mr-[5%]'>
-                <p className=' rounded-[25px] px-[22px] py-[7px] cursor-pointer hover:bg-gray-200  duration-300 '>About</p>
-                <Link to={"/register"} className=' rounded-[25px] px-[22px] py-[7px] cursor-pointer hover:bg-gray-200  duration-300 '>Register</Link>
-                <Link to={"/login"} className=' rounded-[25px] px-[22px] py-[7px] hover:shadow-lg bg-black text-white cursor-pointer hover:bg-white hover:text-black hover:border hover:border-black  duration-300 '>Login</Link>
+                <p className=' rounded-[25px] px-[22px] py-[7px] cursor-pointer hover:bg-blue-200  duration-300 '>About</p>
+                <Link to={"/register"} className=' rounded-[25px] px-[22px] py-[7px] cursor-pointer hover:bg-blue-200  duration-300 '>Register</Link>
+                <Link to={"/login"} className=' rounded-[25px] px-[22px] py-[7px] hover:shadow-lg bg-blue-500 text-white cursor-pointer hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500  duration-300 '>Login</Link>
             </div>
 
             <motion.div whileTap={{scale:0.6}} className='md:block cursor-pointer hidden text-[28px] mr-[8%]' onClick={()=>setIsMobileNav(true)}>

@@ -13,7 +13,7 @@ const AlertPopup = ({icon,data}) => {
     },[]);
 
   return (
-    <div className=" fixed top-[18%] w-[50%] md:w-[80%] bg-red-500 text-white rounded-[10px] px-[14px] py-[17px] text-center flex flex-row items-center gap-[10%] md:justify-center justify-around left-[30%] md:left-[10%]">
+    <div className=" fixed top-[18%] w-[50%] md:w-[80%] bg-red-500 text-white rounded-[10px] px-[8px] py-[15px] text-center flex flex-row items-center gap-[10%] md:justify-center justify-around left-[30%] md:left-[10%]">
 
         <div className=' text-[20px]'>
         {icon}

@@ -73,7 +73,7 @@ const FeedBack = () => {
       <div className="text-start my-[10%] md:my-[5%]">
         
         <div className="flex flex-row items-center font-semibold text-[18px]">
-          <p>{no}</p>.&#160;{head}
+          {no}&#160;.&#160;{head}
         </div>
 
         <div className="flex flex-col items-start gap-[15px] justify-between w-[100%] my-[5%]">
@@ -181,7 +181,7 @@ const FeedBack = () => {
         </div>
 
         <div>
-          <motion.button type="submit" whileTap={{scale:0.6}} className=" px-[15px] py-[10px] rounded-[10px] bg-black text-white font-semibold fixed bottom-[5%] right-[10%] hover:shadow-xl">Submit FeedBack</motion.button>
+          <motion.button type="submit" whileTap={{scale:0.6}} className=" px-[15px] py-[10px] rounded-[10px] bg-blue-500 text-white font-semibold fixed bottom-[5%] right-[10%] hover:shadow-xl">Submit FeedBack</motion.button>
         </div>
 
       </div>
