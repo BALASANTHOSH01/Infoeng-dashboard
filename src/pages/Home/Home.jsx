@@ -1,32 +1,44 @@
 import { CiSearch as SearchIcon } from "react-icons/ci";
 import { FaArrowRightLong as ArrowIcon } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import Parallex from "../../components/Home/Parallex";
-import HeroCorner from "../../components/Home/HeroCorner";
+import SectionOne from "../../components/Home/SectionOne";
+
 
 const Home = () => {
-
   return (
-    <div>
-      
-        <div >  
-            <div className="mx-auto text-center text-[50px] font-extrabold my-[3%] md:my-[6%]">
-              <h1>Get More Info By</h1>
-              <h1>Connect with Info</h1>
-            </div>
-
-            <div className="flex flex-row justify-between rounded-[25px] border border-gray-400 p-3 items-center px-[2%] w-[300px] mx-auto my-[1%] md:my-[3%]">
-              <h1>What you want to know ?</h1>
-              <SearchIcon className=" text-[20px] font-extrabold text-gray-600"/>
-            </div>
-
-            <Link to={"/login"} className=" flex flex-row justify-around items-center mx-auto rounded-[25px] text-white bg-blue-500 w-[150px] px-[15px] py-[10px] hover:shadow-lg cursor-pointer my-[3%] md:my-[8%] hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500  duration-300">
-              <h1>Get Start</h1>
-              <ArrowIcon/>
-            </Link>
+    <div className=" w-screen overflow-hidden">
+      <div>
+        <div className="mx-auto text-center text-[50px] font-extrabold my-[3%] md:my-[10%]">
+          <h1>
+            Get More <span className="text-blue-500">Info</span> By
+          </h1>
+          <h1>
+            Connect with <span className="text-blue-500">Info</span>
+          </h1>
         </div>
-    </div>
-  )
-}
 
-export default Home
+        <div className="flex flex-row justify-between rounded-[25px] border border-gray-400 p-3 items-center px-[2%] w-[300px] mx-auto my-[1%] md:my-[3%]">
+          <h1>What you want to know ?</h1>
+          <SearchIcon className=" text-[20px] font-extrabold text-gray-600" />
+        </div>
+
+        <div className=" flex flex-row md:flex-col md:gap-[10%] gap-[3%] items-center w-[50%] mx-auto justify-center my-[3%] md:my-[7%]">
+
+          <Link to={"/register"} className="bg-white text-black border border-blue-500 w-[150px] md:w-[200px] px-[15px] py-[12px] rounded-[5px] cursor-pointer text-center md:my-[3%]">
+            <p>Register</p>
+          </Link>
+
+          <Link to={"/login"} className=" bg-blue-500 hover:shadow-lg text-white w-[150px] md:w-[200px] px-[15px] py-[12px] rounded-[5px] cursor-pointer text-center md:my-[3%]">
+            <p>Login</p>
+          </Link>
+
+        </div>
+
+      </div>
+
+
+    </div>
+  );
+};
+
+export default Home;

@@ -84,7 +84,7 @@ const FeedBack = () => {
     if (hasSelectedAll) {
       try {
         // Save to Excel via backend
-        await axios.post('http://localhost:3000/save', excelData);
+        await axios.post('https://info-dashboard-backend.onrender.com/save', excelData);
 
         // Add to Firestore
         await addDoc(collection(db, "feedback"), feedbackData);

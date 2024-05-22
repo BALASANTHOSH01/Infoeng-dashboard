@@ -46,8 +46,7 @@ const NavBar = () => {
                 
             </Link>
 
-            <div className='md:hidden flex-[0.6] flex flex-row justify-between items-center mr-[5%]'>
-                <p className=' rounded-[25px] px-[22px] py-[7px] cursor-pointer hover:bg-blue-200  duration-300 '>About</p>
+            <div className='md:hidden flex-[0.3] flex flex-row justify-between items-center mr-[5%]'>
                 <Link to={"/register"} className=' rounded-[25px] px-[22px] py-[7px] cursor-pointer hover:bg-blue-200  duration-300 '>Register</Link>
                 <Link to={"/login"} className=' rounded-[25px] px-[22px] py-[7px] hover:shadow-lg bg-blue-500 text-white cursor-pointer hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500  duration-300 '>Login</Link>
             </div>

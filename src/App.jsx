@@ -8,7 +8,7 @@ const App = () => {
     <AuthContextProvider>
     <UserContextProvider> 
     <div>
-      <div className='w-screen font-Poppins'>
+      <div className='w-screen font-Poppins overflow-hidden'>
         <NavBar/>
         <Outlet/>
       </div>

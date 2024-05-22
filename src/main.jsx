@@ -11,6 +11,7 @@ import { FeedBack } from "./components/index.js";
 import { AuthContextProvider,UserContextProvider } from "./Context/index.js";
 
 import ProductRoute from "./ProductRoute/ProductRoute.jsx";
+import DownloadSheet from "./components/FeedBack/DownloadSheet.jsx";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
           // </ProductRoute>
         ),
       },
+      {
+        path:"/download",
+        element:<DownloadSheet/>
+      }
       
     ],
   },
