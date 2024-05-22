@@ -9,8 +9,7 @@ import { IoIosEyeOff as HiddenPass } from "react-icons/io";
 import { auth,db } from "../../firebase-config.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore"; 
-import AuthContext from "../../Context/Auth&DB/Auth&DB.jsx";
-import UserContext, { useUserData } from "../../Context/UserData/UserData.jsx";
+import AuthContext, { useIsAuthorized, useUserData } from "../../Context/Auth&DB/Auth&DB.jsx";
 import AlertPopup from "../../components/AlertPop/AlertPopup.jsx";
 
 // const UserIDContext = createContext();
@@ -32,15 +31,15 @@ const SignUp = () => {
   const [userExist,setUserExist]=useState(false);
 
   // User Data Managing State
-  const [useremail, setUserEmail] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const [username, setUserName] = useState(null);
-  const [dept, setDept] = useState(null);
+  const [userName, setUserName] = useState(null);
+  const [userDept, setUserDept] = useState(null);
   const [studRoll, setStudRoll] = useState(null);
 
-  //Context API to checking user is authendicated
-  const {isauthendicated,setAuthendicated} =useContext(AuthContext);
-  const {userdata,setUserData} = useUserData();
+  //Calling Context API
+  const {user,setUser} = useUserData();
+  const {isauthorized,setAuthorized} = useIsAuthorized();
 
   useEffect(() => {
     location.pathname === "/login" && setSignUpType("Login");
@@ -48,7 +47,7 @@ const SignUp = () => {
 
     setUserEmail("");
     setPassword("");
-    setDept("");
+    setUserDept("");
     setUserName("");
     setStudRoll("");
   }, [location.pathname, userType]);
@@ -66,22 +65,32 @@ const SignUp = () => {
     event.preventDefault();
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, useremail, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, userEmail, password);
       const userCred = userCredential.user;
       const UserID = userCred.uid;
 
       await setDoc(doc(db,"users",UserID),{
         userType,
-        dept,
-        username,
-        useremail,
+        userDept,
+        userName,
+        userEmail,
         studRoll : userType === "student" ? studRoll : null,
         createdAt: new Date()
       });
+      
       navigate("/feedback");
+      setUser({
+        id:UserID,
+        name:userName,
+        email:userEmail,
+        rollno:userType === "student" ? studRoll : null,
+        dept:userDept,
+        type:userType
+      });
 
-      setUserData({id:UserID,name:username,email:useremail,department:dept,type:userType});
-      console.log("UserData Context : "+userdata);
+      setAuthorized(true);
+
+
 
 
     } catch (error) {
@@ -141,7 +150,7 @@ const SignUp = () => {
                   userType === "staff" ? "Staff Name" : "Student Name"
                 }
                 className={`w-[400px] md:w-[85%] px-2 py-3 rounded-[10px] outline-none my-[2%] md:border md:border-gray-400 md:my-[3%]`}
-                value={username}
+                value={userName}
                 onChange={(e) => setUserName(e.target.value)}
                 required
               />
@@ -159,8 +168,8 @@ const SignUp = () => {
 
               <select
                 className={`w-[400px] md:w-[85%] px-2 py-3 rounded-[10px] outline-none my-[2%] md:border md:border-gray-400 md:my-[3%]`}
-                value={dept}
-                onChange={(e) => setDept(e.target.value)}
+                value={userDept}
+                onChange={(e) => setUserDept(e.target.value)}
                 required
               >
                 <option className=" text-gray-400" value={""}>
@@ -180,7 +189,7 @@ const SignUp = () => {
                   userType === "staff" ? "Staff email" : "Student email"
                 }
                 className={`w-[400px] md:w-[85%] px-2 py-3 rounded-[10px] outline-none my-[2%] md:border md:border-gray-400 md:my-[3%]`}
-                value={useremail}
+                value={userEmail}
                 onChange={(e) => setUserEmail(e.target.value)}
                 required
               />
@@ -237,5 +246,5 @@ const SignUp = () => {
 export default SignUp;
 
 
-// how to signup by using extra details like name,rollno,department,useremail,password for student and name, department,useremail,password for staff. Each user can have the different role in our application. if user is staff means they nevigate to staff dashboard and if student navigate means they navigate to student dashboard. both are different rights and access. And other thing is if anyone want to navigate to the dashboard by using url means the must need to navigate the user to the login page.
+// how to signup by using extra details like name,rollno,department,userEmail,password for student and name, department,userEmail,password for staff. Each user can have the different role in our application. if user is staff means they nevigate to staff dashboard and if student navigate means they navigate to student dashboard. both are different rights and access. And other thing is if anyone want to navigate to the dashboard by using url means the must need to navigate the user to the login page.
 

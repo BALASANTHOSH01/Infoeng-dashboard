@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext({
     isauthendicated:false,
@@ -9,9 +9,17 @@ const AuthContext = createContext({
 
 export const AuthContextProvider = ({children}) =>{
     const [isauthendicated,setAuthendicated]=useState(false);
-    const [userdata,setUserData]=useState([""]);
+    const [userdata,setUserData]=useState({
+        id:null,
+        name:null,
+        email:null,
+        rollno:null,
+        dept:null,
+        type:null
+    });
 
-    console.log("context inner auth :"+ isauthendicated);
+    console.log("context Authorized AC :"+ isauthendicated);
+    console.log("context UserData :"+userdata.name);
 
     return(
         <AuthContext.Provider 
@@ -28,3 +36,21 @@ export const AuthContextProvider = ({children}) =>{
 };
 
 export default AuthContext;
+
+export const useUserData = ()=>{
+    const dataContext = useContext(AuthContext);
+    if(!dataContext){
+        throw new Error("UserData context is not working.")
+    }
+
+    return { user: dataContext.userdata, setUser: dataContext.setUserData };
+};
+
+export const useIsAuthorized=()=>{
+    const authContext = useContext(AuthContext);
+    if(!authContext){
+        throw new Error("Authcontext context is not working.")
+    }
+
+    return { isauthorized: authContext.isauthendicated, setAuthorized: authContext.setAuthendicated };
+}

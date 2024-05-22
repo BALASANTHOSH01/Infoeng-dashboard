@@ -10,6 +10,7 @@ import { RxCross2 as CrossIcon } from "react-icons/rx";
 import { auth } from '../../firebase-config.js';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import AlertPopup from "../../components/AlertPop/AlertPopup.jsx";
+import { useIsAuthorized } from "../../Context/Auth&DB/Auth&DB.jsx";
 
 const Auth = () => {
   const location = useLocation();
@@ -23,6 +24,8 @@ const Auth = () => {
   // User Data Managing State
   const [email,setEmail]=useState(null);
   const [password,setPassword]=useState(null);
+
+  const {isauthorized,setAuthorized} = useIsAuthorized();
 
   useEffect(() => {
     location.pathname === "/login" && setAuthType("Login");
@@ -48,6 +51,7 @@ const Auth = () => {
       
       await signInWithEmailAndPassword(auth,email,password);
       navigate("/feedback");
+      setAuthorized(true);
       console.log("Login Successfully");
       
     } catch (error) {
@@ -75,7 +79,7 @@ const Auth = () => {
       }
 
       
-      <div className=" w-[600px] md:w-[100%] mx-auto bg-gray-100 md:bg-white text-center py-[2%] mt-[3%] md:mt-[2%] rounded-[10px] px-[2%]">
+      <div className=" w-[600px] md:w-[100%] mx-auto bg-gray-100 md:bg-white text-center py-[2%] mt-[3%] md:mt-[7%] rounded-[10px] px-[2%]">
 
         <h1 className=" text-[20px] font-semibold my-[4%] md:my-[6%] uppercase">{authType}</h1>
 

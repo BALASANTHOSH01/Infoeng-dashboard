@@ -32,18 +32,17 @@ const router = createBrowserRouter([
       {
         path: "/feedback",
         element: (
-          <FeedBack />
+            <FeedBack />
           // <ProductRoute>
           // </ProductRoute>
         ),
       },
+      
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <AuthContextProvider>
-    <UserContextProvider> 
 
     <RouterProvider router={router}>
       <React.StrictMode>
@@ -51,6 +50,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </React.StrictMode>
     </RouterProvider>
 
-    </UserContextProvider>
-  </AuthContextProvider>
 );

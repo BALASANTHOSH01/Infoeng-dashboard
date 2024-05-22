@@ -16,7 +16,7 @@ export const UserContextProvider = ({children}) => {
     )
 };
 
-export const useUserData = ()=>{
+ const useUserData = ()=>{
     const context = useContext(UserContext);
     if(!context){
         throw new Error("UserData context is not working.")
