@@ -27,6 +27,7 @@ const FeedBackThanks = () => {
         <p className="text-center">Back to Home</p>
         <BackArrowIcon className="text-[18px]" />
       </Link>
+
     </div>
   );
 };

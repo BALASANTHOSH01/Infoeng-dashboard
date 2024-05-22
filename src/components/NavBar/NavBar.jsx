@@ -19,7 +19,6 @@ const MobileNav = ({setIsMobileNav})=>{
           <Link to={"/"} className=' px-[30px] py-[20px] hover:bg-blue-600'>Home</Link>
           <Link to={"/register"} className=' px-[30px] py-[20px] hover:bg-blue-600'>Register</Link>
           <Link to={"/login"} className=' px-[30px] py-[20px] hover:bg-blue-600'>Login</Link>
-          <Link to={"/feedback"} className=' px-[30px] py-[20px] hover:bg-blue-600'>FeedBack</Link>
         </div>
 
       </div>
@@ -43,7 +42,6 @@ const NavBar = () => {
 
             <Link to={"/"} className='flex-[1.2] cursor-pointer p-2'>
                 <img src={InfoLogo} alt='' className='w-[60px] h-[60px] md:w-[45px] md:h-[45px]'/>
-                
             </Link>
 
             <div className='md:hidden flex-[0.3] flex flex-row justify-between items-center mr-[5%]'>
