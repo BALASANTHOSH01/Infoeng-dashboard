@@ -38,11 +38,6 @@ const router = createBrowserRouter([
           // </ProductRoute>
         ),
       },
-      {
-        path:"/download",
-        element:<DownloadSheet/>
-      }
-      
     ],
   },
 ]);
